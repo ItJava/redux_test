@@ -10,11 +10,13 @@ class Count extends Component {
 
 
     componentDidMount() {
+
        /* //检测redux中状态的变化，只要变化就调用render
         store.subscribe(()=>{            //只要redux 中任何一个状态的改变，都会回调这个函数
             console.log('redux','redux 订阅了消息，store任何状态变更都收到了回调')
             this.setState({})
         })*/
+
     }
 
 
