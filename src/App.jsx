@@ -7,7 +7,7 @@ export default class App extends Component {
         return (
             <div>
                 {/*给容器组件传递store*/}
-                 <Count store={store}/>
+                 <Count/>
             </div>
         );
     }

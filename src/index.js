@@ -1,11 +1,16 @@
 import * as ReactDOM from "react-dom";
 import App from "./App";
 import store from "./redux/store";
+import {Provider} from 'react-redux'
 
 
-ReactDOM.render(<App/>,document.getElementById('root'))
+ReactDOM.render(
 
-//检测Redux 中 状态的改变，如果redux的状态发生了改变，那么重新渲染组件
-store.subscribe(()=>{
-    ReactDOM.render(<App/>,document.getElementById('root'))
-})
+/*
+    检测dom的改变
+*/
+     <Provider store={store}>
+        <App/>
+    </Provider>
+,document.getElementById('root'))
+

@@ -47,7 +47,7 @@ class Count extends Component {
         //函数体
         const {value}=this.selectNumber
         //store.dispatch(createIncrementAsyncAction(value*1,500))
-        this.props.jiaAsync(value*1)
+        this.props.jiaAsync(value*1,500)
 
      }
 
