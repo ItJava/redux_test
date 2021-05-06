@@ -7,7 +7,7 @@ import {Provider} from 'react-redux'
 ReactDOM.render(
 
 /*
-    通过Provider 批量的传递store 组件
+    检测dom的改变
 */
      <Provider store={store}>
         <App/>
