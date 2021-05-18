@@ -1,50 +1,94 @@
 //当前这个文件其实是一个容器组件，让UI组件和redux建立关系，连接起来
 
-//引入CountUI组件
-import  CountUI from '../../components/Count'   //引入的其实是一个UI组件
+
 //引入redux
 //引入connect 用于连接UI组件和redux
 import {connect} from "react-redux";
-import {createIncrementAction,createDecrementAction,createIncrementAsyncAction} from '../../redux/count_action'
+import {
+    createIncrementAction,
+    createDecrementAction,
+    createIncrementAsyncAction} from '../../redux/actions/count'
+import React, {Component} from "react";
 
 
-//映射状态
-/*function mapStateToProps(state) {
-    return {count:state}
-}*/
-//上面的一个函数可以直接优化成下面的：其中({count:state})  代表一个函数只有一个retun 的对象，直接用括号包含对象的简写方式
-/*
-const  mapStateToProps=state=>({count:state})
-*/
+class Count extends Component {
 
-// 1、mapDispatchToProps 返回的是一个对象
-// 2、返回对象中的key 作为传递给UI组件的props的key,value就作为传递个UI组件props的value
-// 3、mapStateToProps 用于传递操作对象的方法
-/*const mapDispatchToProps=dispatch =>({
 
-        jia:(number)=>{dispatch(createIncrementAction(number)) },
-        jian:(number)=>{dispatch(createDecrementAction(number)) },
-        jiaAsync:(number,time)=>{dispatch(createIncrementAsyncAction(number,time)) },
+    state={carName:'奔驰c63'}
 
-})*/
+
+    componentDidMount() {
+
+    }
+
+
+    //加法
+    increment=()=>{
+        //函数体
+        const {value}=this.selectNumber
+        //store.dispatch(createIncrementAction(value*1))
+        this.props.jia(value*1)
+
+    }
+
+    //减法
+    decrement=()=>{
+        //函数体
+        const {value}=this.selectNumber
+        //store.dispatch(createDecrementAction(value*1))
+        this.props.jian(value*1)
+    }
+
+    //奇数再加
+    incrementIfOdd=()=>{
+        //函数体
+        const {value}=this.selectNumber
+        const  count=this.props.count
+        if(count%2!=0){
+
+            this.props.jia(value*1)
+
+
+        }
+    }
+
+    //异步再加
+    incrementAsync=()=>{
+        //函数体
+        const {value}=this.selectNumber
+        //store.dispatch(createIncrementAsyncAction(value*1,500))
+        this.props.jiaAsync(value*1,500)
+
+    }
+
+
+    render() {
+        console.log('UI接收到的props是',this.props)
+        return (
+            <div>
+                <h2>我是Count组件</h2>
+                <h1>当前求和为：{this.props.count}</h1>
+                <select ref={c=>this.selectNumber=c}>  {/*把当前select节点存在组件自身实例selectNumber上*/}
+                    <option value='1'>1</option>
+                    <option value='2'>2</option>
+                    <option value='3'>3</option>
+                </select>&nbsp;&nbsp;&nbsp;
+                <button onClick={this.increment}>+</button>&nbsp;&nbsp;&nbsp;
+                <button onClick={this.decrement}>-</button>&nbsp;&nbsp;&nbsp;
+                <button onClick={this.incrementIfOdd}>当前求和为奇数再加</button>&nbsp;&nbsp;&nbsp;
+                <button onClick={this.incrementAsync}>异步加</button>&nbsp;&nbsp;&nbsp;
+            </div>
+        );
+    }
+}
+
+
+
 
 
 //使用connect()（） 创建并暴露一个Count的容器组件
 export  default  connect(
     state=>({count:state}),
-
-    /*
-    mapStateToProps 的一般写法
-    dispatch =>({
-        jia:(number)=>{dispatch(createIncrementAction(number)) },
-        jian:(number)=>{dispatch(createDecrementAction(number)) },
-        jiaAsync:(number,time)=>{dispatch(createIncrementAsyncAction(number,time)) },
-
-    })*/
-    /* mapStateToProps 的简写方式
-    * react-redux 自动简化编码：这个地方是通过react-redux 底层 做了判断，如果传递是一个对象，然后自动dispatch
-    *
-    * */
     {
         jia:createIncrementAction,
         jian:createDecrementAction,
@@ -52,6 +96,6 @@ export  default  connect(
 
     }
 
-)(CountUI)
+)(Count)
 
 
