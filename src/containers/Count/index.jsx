@@ -42,6 +42,7 @@ class Count extends Component {
     //奇数再加
     incrementIfOdd=()=>{
         //函数体
+
         const {value}=this.selectNumber
         const  count=this.props.count
         if(count%2!=0){
@@ -67,7 +68,7 @@ class Count extends Component {
         return (
             <div>
                 <h2>我是Count组件</h2>
-                <h1>当前求和为：{this.props.count}</h1>
+                <h1>当前求和为：{this.props.count},下方总人数为：{this.props.renshu}</h1>
                 <select ref={c=>this.selectNumber=c}>  {/*把当前select节点存在组件自身实例selectNumber上*/}
                     <option value='1'>1</option>
                     <option value='2'>2</option>
@@ -88,7 +89,7 @@ class Count extends Component {
 
 //使用connect()（） 创建并暴露一个Count的容器组件
 export  default  connect(
-    state=>({count:state}),
+    state=>({count:state.he,renshu:state.rens.length}),        //传递给上方UI
     {
         jia:createIncrementAction,
         jian:createDecrementAction,

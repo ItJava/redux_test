@@ -6,6 +6,7 @@ import {INCREMENT,DECREMENT} from '../constant'
 
 const initState=99;
 export  default  function countReducer(preState=initState,action){    //直接默认值initState  第一次默认初始化
+    console.log('countReducer @@@')
 
     console.log(preState,action)
     //if(preState===undefined) preState=0
