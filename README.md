@@ -76,5 +76,9 @@
 import {composeWithDevTools} from "redux-devtools-extension";
 export default createStore(allReducer,composeWithDevTools(applyMiddleware(thunk)))
 
- 
+
+
+# 8.求和案例_react-redux最终版本
+    （1).所有变量名字都要规范，尽量触发对象的简写形式
+     (2).reducers 文件夹中，编写index.js 专门用于汇总并暴露所有的reducer
 
