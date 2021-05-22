@@ -2,24 +2,24 @@
 # redux 精简版本：
 (1).去除Count组件自身的状态
 (2).src下建立:
-    -redux
-    -store.js
-    -count.js
+-redux
+-store.js
+-count.js
 
 (3).store.js：
-				1).引入redux中的createStore函数，创建一个store
-				2).createStore调用时要传入一个为其服务的reducer
-				3).记得暴露store对象
+1).引入redux中的createStore函数，创建一个store
+2).createStore调用时要传入一个为其服务的reducer
+3).记得暴露store对象
 
 (4).count.js：
-				1).reducer的本质是一个函数，接收：preState,action，返回加工后的状态
-				2).reducer有两个作用：初始化状态，加工状态
-				3).reducer被第一次调用时，是store自动触发的，
-								传递的preState是undefined,
-								传递的action是:{type:'@@REDUX/INIT_a.2.b.4}
+1).reducer的本质是一个函数，接收：preState,action，返回加工后的状态
+2).reducer有两个作用：初始化状态，加工状态
+3).reducer被第一次调用时，是store自动触发的，
+传递的preState是undefined,
+传递的action是:{type:'@@REDUX/INIT_a.2.b.4}
 
 (5).在index.js中监测store中状态的改变，一旦发生改变重新渲染<App/>
-			备注：redux只负责管理状态，至于状态的改变驱动着页面的展示，要靠我们自己写。
+备注：redux只负责管理状态，至于状态的改变驱动着页面的展示，要靠我们自己写。
 
 
 
@@ -62,4 +62,19 @@
                     {key:xxxxxAction}      //映射操作的方法
                   )(UI 组件）
         - 在UI组件中通过this.props.xxxxxx读取和操作状态
+
+# 6.求和案例_react-redux 数据共享版
+（1）.定义一个Person 组件，和 Count组件通过redux共享数据。
+（2）.为Person组件编写：reducer、action,配置constant常量
+（3）.重点：Person的reducer和Count的Reducer要使用conbineReducers进行合并，合并后的总状态是一个对象！！！
+（4）.交个store的是总reducer，最后注意在组件中取出状态的时候，记得“取到位”
+
+
+#7 求和案例_react-redux开发者工具的使用
+（1）.npm install redux-devtools-extension
+（2）.store中进行设置
+import {composeWithDevTools} from "redux-devtools-extension";
+export default createStore(allReducer,composeWithDevTools(applyMiddleware(thunk)))
+
+ 
 
