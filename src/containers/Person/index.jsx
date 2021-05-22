@@ -18,14 +18,14 @@ import {createAddPersonAction} from "../../redux/actions/person";          //cre
     render() {
         return (
             <div>
-                <h2> 我是Person 组件,上方组件求和未{this.props.he}</h2>
+                <h2> 我是Person 组件,上方组件求和为{this.props.count}</h2>
               <input  ref={c=>this.nameNode=c} type="text" placeholder="输入名字"/>
               <input  ref={c=>this.ageNode=c} type="text" placeholder="输入年龄"/>
               <button onClick={this.addPerson}>添加</button>
 
                 <ul>
                     {
-                     this.props.yiduiren.map((p)=>{
+                     this.props.persons.map((p)=>{
 
                       return   <li key={p.id}>{p.name}---{p.age}</li>
 
@@ -44,8 +44,8 @@ import {createAddPersonAction} from "../../redux/actions/person";          //cre
 //使用connect()（） 创建并暴露一个Count的容器组件
 export  default  connect(
     state=>({
-        yiduiren:state.rens,
-        he:state.he
+        persons:state.persons,
+        count:state.count
     }),       //映射状态
     {jiaYiRen:createAddPersonAction}   //映射操作状态的方法，传递给UI了
 

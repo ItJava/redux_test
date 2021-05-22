@@ -7,7 +7,7 @@ import  {createStore,applyMiddleware,combineReducers} from 'redux'
 //引入count组件服务的reducer
 import countReducer from './reducers/count'
 
-//引入count组件服务的reducer
+//引入Persont组件服务的reducer
 import personReducer from './reducers/person'
 
 //引入redux-thunk 用于支持异步的action
@@ -20,8 +20,8 @@ import {composeWithDevTools} from "redux-devtools-extension";
 
 //得汇总所有的reducer,变为一个总的reducer
 const allReducer=combineReducers({  //combineReducers 传入的对象，就是Redux 中保存的总状态对象
-    he:countReducer,
-    rens:personReducer
+    count:countReducer,
+    persons:personReducer
 })
 
 
